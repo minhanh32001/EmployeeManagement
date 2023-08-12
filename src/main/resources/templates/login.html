@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログインページ</title>
+</head>
+<body>
+<h2>ログインID及びパスワードを入力して下さい</h2>
+<p id="errorText" style="color: red;"></p>
+<form action="/authen" method="post">
+    <label for="username">ログインID:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">パスワード:</label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">ログイン</button>
+</form>
+<script>
+    function authenticate() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Kiểm tra xác thực tài khoản ở đây
+        // Ví dụ: So sánh với dữ liệu tài khoản trong cơ sở dữ liệu
+
+        // Nếu sai tài khoản, hiển thị thông báo lỗi
+        var errorText = document.getElementById("errorText");
+        errorText.textContent = "Sai tài khoản hoặc mật khẩu. Vui lòng thử lại.";
+    }
+</script>
+</body>
+</html>
