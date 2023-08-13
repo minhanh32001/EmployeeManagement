@@ -1,4 +1,4 @@
-package JVDC.EmployeeManagement.CommonController;
+package JVDC.EmployeeManagement.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +11,12 @@ public class LoginController {
     public String login() {
         return "login";
     }
-    @GetMapping("/mypage")
-    public String showMyPage(){
-        return  "my-page";
-    }
     @PostMapping("/authen")
     public ModelAndView authenticate(@RequestParam String username, @RequestParam String password) {
         ModelAndView modelAndView = new ModelAndView();
 
         if (username.equals("user") && password.equals("123")) {
-            modelAndView.setViewName("redirect:/mypage");
+            modelAndView.setViewName("redirect:/Employee");
         } else {
             modelAndView.setViewName("redirect:/login");
         }
