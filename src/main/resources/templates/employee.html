@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Information</title>
+</head>
+<body>
+    <div class="parent">
+    <input class="input" type="type" placeholder="Search..." />
+    <button type="submit">検索</button>
+    </div>
+<br>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>メール</th>
+        <th>電話番号</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="employee : ${employees}">
+        <td><a th:href="@{/Employee/{id}(id=${employee.id})}" th:text="${employee.id}"></a></td>
+        <td th:text="${employee.employee_name}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.phone_number}"></td>
+        <td><a th:href="@{/Employee/modify/{id}(id=${employee.id})}" th:text="更新"></a></td>
+    </tr>
+</table>
+</body>
+</html>

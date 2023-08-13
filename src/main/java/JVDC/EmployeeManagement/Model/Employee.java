@@ -1,21 +1,36 @@
 package JVDC.EmployeeManagement.Model;
 
 public class Employee {
+
     private int id;
-    private String name;
+    private String employee_name;
     private String email;
-    private String phoneNumber;
+    private String phone_number;
+
+    public Employee() {
+    }
+
+    public Employee(int id, String employee_name, String email, String phone_number) {
+        this.id = id;
+        this.employee_name = employee_name;
+        this.email = email;
+        this.phone_number = phone_number;
+    }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getEmployee_name() {
+        return employee_name;
+    }
+
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
     }
 
     public String getEmail() {
@@ -26,12 +41,11 @@ public class Employee {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 }
-

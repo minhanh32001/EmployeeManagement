@@ -15,18 +15,5 @@
     <input type="password" id="password" name="password" required>
     <button type="submit">ログイン</button>
 </form>
-<script>
-    function authenticate() {
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-
-        // Kiểm tra xác thực tài khoản ở đây
-        // Ví dụ: So sánh với dữ liệu tài khoản trong cơ sở dữ liệu
-
-        // Nếu sai tài khoản, hiển thị thông báo lỗi
-        var errorText = document.getElementById("errorText");
-        errorText.textContent = "Sai tài khoản hoặc mật khẩu. Vui lòng thử lại.";
-    }
-</script>
 </body>
 </html>
