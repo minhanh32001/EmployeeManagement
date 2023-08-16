@@ -1,6 +1,7 @@
 package JVDC.EmployeeManagement.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,15 +13,12 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/authen")
-    public ModelAndView authenticate(@RequestParam String username, @RequestParam String password) {
-        ModelAndView modelAndView = new ModelAndView();
-
+    public String authen(@RequestParam String username, @RequestParam String password, Model model) {
         if (username.equals("user") && password.equals("123")) {
-            modelAndView.setViewName("redirect:/Employee");
+            return "redirect:/Employee";
         } else {
-            modelAndView.setViewName("redirect:/login");
+            model.addAttribute("err", "エラーがある");
+            return "login";
         }
-
-        return modelAndView;
     }
 }
