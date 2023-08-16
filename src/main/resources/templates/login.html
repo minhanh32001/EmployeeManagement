@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>ログインID及びパスワードを入力して下さい</h2>
-<p id="errorText" style="color: red;"></p>
+<p style="color:red" th:utext="${err}"></p>
 <form action="/authen" method="post">
     <label for="username">ログインID:</label>
     <input type="text" id="username" name="username" required>
