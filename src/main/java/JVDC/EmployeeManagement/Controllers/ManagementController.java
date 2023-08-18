@@ -34,8 +34,15 @@ public class ManagementController {
     };
 
     // should use role to protect these APIs
+    @GetMapping("/create") // add new employee, should place a form here
+    public String newEmployeeForm(){
+        return "employee_add";
+    }
     @PostMapping("/create") // add new employee, should place a form here
-    public void newEmployee(){
+    public String newEmployee(@RequestParam String employee_name, @RequestParam String email, @RequestParam String phone_number){
+        Employee employee = new Employee(5, employee_name, email, phone_number);
+        employeeRepository.insert(employee);
+        return "redirect:/Employee";
     }
 
     @PostMapping("/modify/{id}") // need another API to get modify form, modify @Update to meet conditions
@@ -57,6 +64,14 @@ public class ManagementController {
         return "employee_modify";
 
     }
-    @DeleteMapping("/delete/{id}") // return a message or something here
-    public void deleteEmployee(){}
+//    @DeleteMapping("/delete/{id}") // return a message or something here
+//    public int deleteEmployee(@PathVariable int id){
+//        return employeeRepository.deleteById(id);
+//        return "redirect:/Employee";
+//    }
+    @GetMapping("/delete/{id}") // return a message or something here
+    public String deleteEmployee(@PathVariable int id){
+        employeeRepository.deleteById(id);
+        return "redirect:/Employee";
+    }
 }
