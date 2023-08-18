@@ -14,6 +14,7 @@
 </div>
 <div>
     <button><a href="/Employee">戻す</a></button>
+    <button><a th:href="@{/Employee/delete/{id}(id=${employee.id})}">Delete</a></button>
     <button><a th:href="@{/Employee/modify/{id}(id=${employee.id})}">登録</a></button>
 </div>
 
