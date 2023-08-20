@@ -1,7 +1,6 @@
 package JVDC.EmployeeManagement.Model;
 
 public class Employee {
-
     private int id;
     private String employee_name;
     private String email;
@@ -10,8 +9,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String employee_name, String email, String phone_number) {
-        this.id = id;
+    public Employee(String employee_name, String email, String phone_number) {
         this.employee_name = employee_name;
         this.email = email;
         this.phone_number = phone_number;

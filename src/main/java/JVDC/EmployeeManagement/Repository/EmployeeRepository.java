@@ -16,9 +16,8 @@ public interface EmployeeRepository {
     @Delete("DELETE FROM employees WHERE id = #{id}")
     public int deleteById(int id);
 
-    @Insert("INSERT INTO employees(id, employee_name, email, phone_number) " +
-            " VALUES (#{id}, #{employee_name}, #{email}, #{phone_number})")
-    public int insert(Employee employee);
+    @Insert("INSERT INTO employees ( employee_name, email, phone_number) VALUES (#{employee_name}, #{email}, #{phone_number})")
+    public boolean insert(Employee employee);
 
     @Update("Update employees set employee_name=#{employee_name}, " +
             " email=#{email}, phone_number=#{phone_number} where id=#{id}")

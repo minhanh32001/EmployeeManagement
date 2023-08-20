@@ -34,14 +34,16 @@ public class ManagementController {
     };
 
     // should use role to protect these APIs
-    @GetMapping("/create") // add new employee, should place a form here
+    @GetMapping("/create")
     public String newEmployeeForm(){
         return "employee_add";
     }
-    @PostMapping("/create") // add new employee, should place a form here
+    @PostMapping("/create")
     public String newEmployee(@RequestParam String employee_name, @RequestParam String email, @RequestParam String phone_number){
-        Employee employee = new Employee(5, employee_name, email, phone_number);
-        employeeRepository.insert(employee);
+        if (!employee_name.isEmpty()){
+            Employee employee = new Employee(employee_name, email, phone_number);
+            employeeRepository.insert(employee);
+        }
         return "redirect:/Employee";
     }
 
