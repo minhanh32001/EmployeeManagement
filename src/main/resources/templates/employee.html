@@ -20,11 +20,11 @@
         <th>操作</th>
     </tr>
     <tr th:each="employee : ${employees}">
-        <td><a th:href="@{/Employee/{id}(id=${employee.id})}" th:text="${employee.id}"></a></td>
+        <td th:text="${employee.id}"></a></td>
         <td th:text="${employee.employee_name}"></td>
         <td th:text="${employee.email}"></td>
         <td th:text="${employee.phone_number}"></td>
-        <td><a th:href="@{/Employee/modify/{id}(id=${employee.id})}" th:text="更新"></a></td>
+        <td><a th:href="@{/Employee/{id}(id=${employee.id})}" th:text="更新"></a></td>
     </tr>
 </table>
 </body>
