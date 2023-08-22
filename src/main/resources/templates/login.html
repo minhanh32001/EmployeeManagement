@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>ログインID及びパスワードを入力して下さい</h2>
-<p style="color:red" th:utext="${err}"></p>
+<p style="color:red" th:utext="${message}"></p>
 <form action="/authen" method="post">
     <label for="username">ログインID:</label>
     <input type="text" id="username" name="username" required>
@@ -15,5 +15,7 @@
     <input type="password" id="password" name="password" required>
     <button type="submit">ログイン</button>
 </form>
+<br>
+<button><a href="/">登録</a></button>
 </body>
 </html>
