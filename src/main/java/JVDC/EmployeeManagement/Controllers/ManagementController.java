@@ -3,6 +3,7 @@ package JVDC.EmployeeManagement.Controllers;
 
 import JVDC.EmployeeManagement.Model.Employee;
 import JVDC.EmployeeManagement.Repository.EmployeeRepository;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,12 @@ public class ManagementController {
         model.addAttribute("employees", employees);
 
         return "employee";
+    }
+    @GetMapping("/search")
+    public String searchEmployee(@RequestParam String employee_name, Model model){
+        List<Employee> employees = employeeRepository.findByName(employee_name);
+        model.addAttribute("employees", employees);
+        return "employee_search";
     }
     @GetMapping("/{id}") // get employee by id
     public String showEmployee(@PathVariable int id, Model model){

@@ -10,6 +10,9 @@ public interface EmployeeRepository {
     @Select("select * from employees")
     public List<Employee> findAll();
 
+    @Select("select * FROM employees WHERE employee_name = #{employee_name}")
+    public List<Employee> findByName(String employee_name);
+
     @Select("SELECT * FROM employees WHERE id = #{id}")
     public Employee findById(int id);
 

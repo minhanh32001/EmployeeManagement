@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>modify form</title>
+</head>
+<body>
+<h1>社員情報</h1>
+<p style="color:red" th:utext="${message}"></p>
+<form action="/register" method="POST">
+    <table>
+        <tr>
+            <td>ユーザー名前</td>
+            <td><input type="text" name="username"/></td>
+        </tr>
+        <tr>
+            <td>パスワード</td>
+            <td><input type="password" name="password"/></td>
+        </tr>
+        <tr align="center">
+            <td><button type="submit">OK</button></td>
+            <td><button><a href="/login">ロギング</a></button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

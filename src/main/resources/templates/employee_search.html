@@ -5,12 +5,11 @@
     <title>Employee Information</title>
 </head>
 <body>
-    <form th:action="@{Employee/search}" method="get">
+    <form th:action="@{/Employee/search}" method="get">
         <input type="text" name="employee_name" placeholder="Search..." size="30" >
         <button type="submit">検索</button>
     </form>
 <br>
-    <button><a href="/Employee/create">登録</a></button>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -27,5 +26,6 @@
         <td><a th:href="@{/Employee/{id}(id=${employee.id})}" th:text="更新"></a></td>
     </tr>
 </table>
+    <button><a href="/Employee">戻す</a></button>
 </body>
 </html>
