@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(path = "")
@@ -19,20 +20,21 @@ public class AccountController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private AccountRepository accountRepository;
-    @GetMapping("")
+    @GetMapping("/register")
     public String newEmployeeForm(){
         return "register";
     }
     @PostMapping("/register")
-    public String newEmployee(@RequestParam String username, @RequestParam String password, Model model){
-        if (!username.isEmpty() && !password.isEmpty()){
+    public String newEmployee(@RequestParam String username, @RequestParam String password,Model model, RedirectAttributes redirectAttributes){
+        Account checkExist = accountRepository.findByName(username);
+        if (checkExist== null && !username.isEmpty() && !password.isEmpty()){
             Account account = new Account();
             account.setUsername(username);
             account.setPassword(passwordEncoder.encode(password));
             account.setRole("user");
             accountRepository.insert(account);
-            model.addAttribute("message", "アカウント設定が成功しました、ロギングしてください。");
-            return "login";
+            redirectAttributes.addFlashAttribute("message", "アカウント設定が成功しました、ロギングしてください。");
+            return "redirect:login";
         }
         else {
             model.addAttribute("message", "エラーがあります！");

@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログインページ</title>
 </head>
 <body>
-<h2>ログインID及びパスワードを入力して下さい</h2>
+<p>ログインID及びパスワードを入力して下さい</p>
 <p style="color:red" th:utext="${message}"></p>
-<form action="/authen" method="post">
-    <label for="username">ログインID:</label>
-    <input type="text" id="username" name="username" required>
-    <label for="password">パスワード:</label>
-    <input type="password" id="password" name="password" required>
-    <button type="submit">ログイン</button>
-</form>
-<br>
-<button><a href="/">登録</a></button>
+<div class="loginform">
+    <form action="/authen" method="post">
+        <label for="username">ログインID:</label>
+        <input type="text" id="username" name="username" required minlength="10">
+        <label for="password">パスワード:</label>
+        <input type="password" id="password" name="password" required minlength="10">
+        <br>
+        <button type="submit">ログイン</button>
+        <button><a href="/">登録</a></button>
+    </form>
+</div>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import JVDC.EmployeeManagement.Model.Account;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
@@ -21,13 +22,13 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/authen")
-    public String authen(@RequestParam String username, @RequestParam String password, Model model) {
+    public String authen(@RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) {
         Account account = accountRepository.findByName(username);
         if (account != null && passwordEncoder.matches(password, account.getPassword()))
             return "redirect:Employee";
         else {
-            model.addAttribute("message", "エラーがある");
-            return "login";
+            redirectAttributes.addFlashAttribute("message", "エラーがある");
+            return "redirect:login";
         }
 
     }

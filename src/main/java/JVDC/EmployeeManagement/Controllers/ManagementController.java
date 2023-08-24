@@ -54,16 +54,14 @@ public class ManagementController {
         return "redirect:/Employee";
     }
 
-    @PostMapping("/modify/{id}") // need another API to get modify form, modify @Update to meet conditions
-    public ModelAndView modifyEmployee(@PathVariable int id, @RequestParam String employee_name, @RequestParam String email, @RequestParam String phone_number){
+    @PostMapping("/modify/{id}")
+    public String modifyEmployee(@PathVariable int id, @RequestParam String employee_name, @RequestParam String email, @RequestParam String phone_number){
         Employee employee = employeeRepository.findById(id);
         employee.setEmployee_name(employee_name);
         employee.setEmail(email);
         employee.setPhone_number(phone_number);
         employeeRepository.update(employee);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/Employee");
-        return modelAndView;
+        return "redirect:/Employee";
     }
 
     @GetMapping("/modify/{id}")
