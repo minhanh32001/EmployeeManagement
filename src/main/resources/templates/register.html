@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
     <meta charset="UTF-8">
     <title>modify form</title>
 </head>
@@ -11,11 +12,11 @@
     <table>
         <tr>
             <td>ユーザー名前</td>
-            <td><input type="text" name="username"/></td>
+            <td><input type="text" name="username" minlength="10" required/></td>
         </tr>
         <tr>
             <td>パスワード</td>
-            <td><input type="password" name="password"/></td>
+            <td><input type="password" name="password" minlength="8" required/></td>
         </tr>
         <tr align="center">
             <td><button type="submit">OK</button></td>
