@@ -3,38 +3,57 @@ package JVDC.EmployeeManagement.Controllers;
 
 import JVDC.EmployeeManagement.Model.Employee;
 import JVDC.EmployeeManagement.Repository.EmployeeRepository;
-import jakarta.websocket.server.PathParam;
+import JVDC.EmployeeManagement.Services.ManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping(path = "/Employee")
 public class ManagementController {
     @Autowired
     EmployeeRepository employeeRepository;
+    @Autowired
+    ManagementService managementService;
 
     @GetMapping("")
-    public String showEmployeeList(Model model) {
-        List<Employee> employees = employeeRepository.findAll();
+    public String showEmployeeListPage(Model model,
+                                       @RequestParam("page") Optional<Integer> page,
+                                       @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(5);
 
-        model.addAttribute("employees", employees);
+        Page<Employee> employeePage = managementService.findAll(PageRequest.of(currentPage - 1, pageSize));
 
+        model.addAttribute("employees",employeePage );
+
+        int totalPages = employeePage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
         return "employee";
     }
+
     @GetMapping("/search")
     public String searchEmployee(@RequestParam String employee_name, Model model){
-        List<Employee> employees = employeeRepository.findByName(employee_name);
+        List<Employee> employees = employeeRepository.search(employee_name);
         model.addAttribute("employees", employees);
         return "employee_search";
     }
     @GetMapping("/{id}") // get employee by id
     public String showEmployee(@PathVariable int id, Model model){
-
         Employee employee = employeeRepository.findById(id);
         model.addAttribute("employee", employee);
         return "employee_detail";

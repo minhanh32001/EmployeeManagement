@@ -2,13 +2,13 @@
 <html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログインページ</title>
 </head>
 <body>
-<p>ログインID及びパスワードを入力して下さい</p>
+<p class="header">ログインID及びパスワードを入力して下さい</p>
 <p style="color:red" th:utext="${message}"></p>
 <div class="loginform">
     <form action="/authen" method="post">
@@ -18,8 +18,9 @@
         <input type="password" id="password" name="password" required minlength="10">
         <br>
         <button type="submit">ログイン</button>
-        <button><a href="/">登録</a></button>
     </form>
+    <br>
+    <p>アカウントがありません <a style="" href="/register">登録</a></p>
 </div>
 </body>
 </html>

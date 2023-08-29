@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
+    <link th:href="@{/css/register.css}" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>modify form</title>
+    <title>登録</title>
 </head>
 <body>
-<h1>社員情報</h1>
 <p style="color:red" th:utext="${message}"></p>
+<h1>登録</h1>
 <form action="/register" method="POST">
     <table>
         <tr>
@@ -20,9 +21,10 @@
         </tr>
         <tr align="center">
             <td><button type="submit">OK</button></td>
-            <td><button><a href="/login">ロギング</a></button></td>
         </tr>
+
     </table>
+    <p>アカウントがありました <a href="/login">ロギング</a></p>
 </form>
 </body>
 </html>

@@ -2,22 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
+    <link th:href="@{/css/employee_detail.css}" rel="stylesheet" />
     <meta charset="UTF-8">
     <title>社員情報</title>
 </head>
 <body>
 <h1>社員情報</h1>
-<div>
-    <p><strong>ID:</strong> <span th:text="${employee.id}"></span></p>
-    <p><strong>名前:</strong> <span th:text="${employee.employee_name}"></span></p>
-    <p><strong>メール:</strong> <span th:text="${employee.email}"></span></p>
-    <p><strong>電話番号:</strong> <span th:text="${employee.phone_number}"></span></p>
+<div class="center-table">
+    <table>
+        <tr>
+            <td><strong>ID:</strong></td>
+            <td><span th:text="${employee.id}"></span></td>
+        </tr>
+        <tr>
+            <td><strong>名前:</strong></td>
+            <td><span th:text="${employee.employee_name}"></span></td>
+        </tr>
+        <tr>
+            <td><strong>メール:</strong></td>
+            <td><span th:text="${employee.email}"></span></td>
+        </tr>
+        <tr>
+            <td><strong>電話番号:</strong></td>
+            <td><span th:text="${employee.phone_number}"></span></td>
+        </tr>
+    </table>
 </div>
 <div>
     <button><a href="/Employee">戻す</a></button>
-    <button><a th:href="@{/Employee/delete/{id}(id=${employee.id})}">Delete</a></button>
-    <button><a th:href="@{/Employee/modify/{id}(id=${employee.id})}">登録</a></button>
+    <button class="delete"><a th:href="@{/Employee/delete/{id}(id=${employee.id})}">削除</a></button>
+    <button style="background-color: yellow"><a th:href="@{/Employee/modify/{id}(id=${employee.id})}">更新</a></button>
 </div>
-
 </body>
 </html>
