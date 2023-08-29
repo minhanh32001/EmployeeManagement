@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
+    <link th:href="@{/css/employee_add.css}" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>modify form</title>
+    <title>更新</title>
 </head>
 <body>
-<h1>社員情報</h1>
+<h1>更新映画</h1>
 <form action="/Employee/create" method="POST">
     <table>
         <tr>
@@ -14,16 +15,16 @@
             <td><input type="text" name="employee_name" required/></td>
         </tr>
         <tr>
-            <td>Me-ru</td>
+            <td>メール</td>
             <td><input type="email" name="email" required/></td>
         </tr>
         <tr>
-            <td>Denwa</td>
+            <td>電話番号</td>
             <td><input type="tel" name="phone_number" required/></td>
         </tr>
         <tr align="center">
             <td><button type="submit">OK</button></td>
-            <td><button onclick="history.back()">戻す</button></td>
+            <td><button type="reset" onclick="history.back()">戻す</button></td>
         </tr>
     </table>
 </form>

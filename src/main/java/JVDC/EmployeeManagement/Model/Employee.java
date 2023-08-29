@@ -1,6 +1,7 @@
 package JVDC.EmployeeManagement.Model;
 
 public class Employee {
+    private int serial;
     private int id;
     private String employee_name;
     private String email;
@@ -13,6 +14,14 @@ public class Employee {
         this.employee_name = employee_name;
         this.email = email;
         this.phone_number = phone_number;
+    }
+
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
     }
 
     public int getId() {

@@ -2,8 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
+    <link th:href="@{/css/employee.css}" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>Employee Information</title>
+    <title>検索</title>
 </head>
 <body>
     <form th:action="@{/Employee/search}" method="get">
@@ -27,6 +28,6 @@
         <td><a th:href="@{/Employee/{id}(id=${employee.id})}" th:text="更新"></a></td>
     </tr>
 </table>
-    <button><a href="/Employee">戻す</a></button>
+    <button class="modoru"><a href="/Employee">戻す</a></button>
 </body>
 </html>

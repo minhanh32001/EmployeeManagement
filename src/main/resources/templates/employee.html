@@ -2,18 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
+    <link th:href="@{/css/employee.css}" rel="stylesheet" />
     <meta charset="UTF-8">
     <title>Employee Information</title>
 </head>
 <body>
     <form th:action="@{Employee/search}" method="get">
-        <input type="text" name="employee_name" placeholder="Search..." size="30" >
+        <input type="text" name="employee_name" placeholder="検索..." size="50" >
         <button type="submit">検索</button>
     </form>
 <br>
-    <button><a href="/Employee/create">登録</a></button>
+    <button type="button" class="toroku"><a href="/Employee/create" th:text="登録"></a></button>
 <table border="1">
     <tr>
+        <th>晩語順</th>
         <th>ID</th>
         <th>名前</th>
         <th>メール</th>
@@ -21,12 +23,20 @@
         <th>操作</th>
     </tr>
     <tr th:each="employee : ${employees}">
-        <td th:text="${employee.id}"></a></td>
+        <td th:text="${employee.serial}"></td>
+        <td th:text="${employee.id}"></td>
         <td th:text="${employee.employee_name}"></td>
         <td th:text="${employee.email}"></td>
         <td th:text="${employee.phone_number}"></td>
         <td><a th:href="@{/Employee/{id}(id=${employee.id})}" th:text="更新"></a></td>
     </tr>
 </table>
+    <div th:if="${employees.totalPages > 0}" class="pagination">
+        <th:block th:each="pageNumber : ${pageNumbers}">
+            <a th:href="@{/Employee(size=${employees.size}, page=${pageNumber})}"
+               th:text="${pageNumber}"
+               th:class="${pageNumber == employees.number + 1} ? 'active'"></a>
+        </th:block>
+    </div>
 </body>
 </html>
