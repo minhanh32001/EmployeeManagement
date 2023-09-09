@@ -15,6 +15,8 @@ public interface EmployeeRepository {
 
     @Select("SELECT * FROM employees WHERE id = #{id}")
     public Employee findById(int id);
+    @Select("SELECT * FROM employees WHERE email = #{email}")
+    public Employee findByEmail(String email);
 
     @Delete("DELETE FROM employees WHERE id = #{id}")
     public int deleteById(int id);

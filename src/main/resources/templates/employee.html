@@ -11,27 +11,25 @@
         <input type="text" name="employee_name" placeholder="検索..." size="50" >
         <button type="submit">検索</button>
     </form>
-<br>
+    <br>
+    <p style="color:red" th:utext="${message}"></p>
+    <br>
     <button type="button" class="toroku"><a href="/Employee/create" th:text="登録"></a></button>
-<table border="1">
-    <tr>
-        <th>晩語順</th>
-        <th>ID</th>
-        <th>名前</th>
-        <th>メール</th>
-        <th>電話番号</th>
-        <th>操作</th>
-    </tr>
-    <tr th:each="employee : ${employees}">
-        <td th:text="${employee.serial}"></td>
-        <td th:text="${employee.id}"></td>
-        <td th:text="${employee.employee_name}"></td>
-        <td th:text="${employee.email}"></td>
-        <td th:text="${employee.phone_number}"></td>
-        <td><a th:href="@{/Employee/{id}(id=${employee.id})}" th:text="更新"></a></td>
-    </tr>
-</table>
-    <div th:if="${employees.totalPages > 0}" class="pagination">
+    <table style="width:80%">
+        <tr>
+            <th style="width:15%">ID</th>
+            <th style="width:30%">名前</th>
+            <th style="width:30%">メール</th>
+            <th style="width:30%">電話番号</th>
+        </tr>
+        <tr th:each="employee : ${employees}">
+            <td><a th:href="@{/Employee/{id}(id=${employee.id})}" th:text="${employee.id}"></td>
+            <td th:text="${employee.employee_name}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.phone_number}"></td>
+        </tr>
+    </table>
+    <div th:if="${employees.totalPages > 0}"  class="pagination">
         <th:block th:each="pageNumber : ${pageNumbers}">
             <a th:href="@{/Employee(size=${employees.size}, page=${pageNumber})}"
                th:text="${pageNumber}"

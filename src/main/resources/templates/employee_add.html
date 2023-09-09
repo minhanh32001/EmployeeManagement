@@ -4,10 +4,10 @@
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
     <link th:href="@{/css/employee_add.css}" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>更新</title>
+    <title>登録</title>
 </head>
 <body>
-<h1>更新映画</h1>
+<h1>登録映画</h1>
 <form action="/Employee/create" method="POST">
     <table>
         <tr>
@@ -28,5 +28,6 @@
         </tr>
     </table>
 </form>
+<p style="color:red" th:utext="${message}"></p>
 </body>
 </html>

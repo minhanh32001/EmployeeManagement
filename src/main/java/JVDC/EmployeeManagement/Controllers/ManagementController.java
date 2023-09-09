@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -59,45 +60,60 @@ public class ManagementController {
         return "employee_detail";
     };
 
-    // should use role to protect these APIs
     @GetMapping("/create")
     public String newEmployeeForm(){
         return "employee_add";
     }
     @PostMapping("/create")
-    public String newEmployee(@RequestParam String employee_name, @RequestParam String email, @RequestParam String phone_number){
-        if (!employee_name.isEmpty()){
+    public String newEmployee(@RequestParam String employee_name, @RequestParam String email,
+                              @RequestParam String phone_number,
+                              Model model, RedirectAttributes redirectAttributes){
+        if (employeeRepository.findByEmail(email)==null){
             Employee employee = new Employee(employee_name, email, phone_number);
             employeeRepository.insert(employee);
+            redirectAttributes.addFlashAttribute("message", "従業員の追加に成功しました");
+            return "redirect:/Employee";
         }
-        return "redirect:/Employee";
+        else {
+            model.addAttribute("message", "エラー　この従業員がいます");
+            return "employee_add";
+        }
     }
 
     @PostMapping("/modify/{id}")
-    public String modifyEmployee(@PathVariable int id, @RequestParam String employee_name, @RequestParam String email, @RequestParam String phone_number){
-        Employee employee = employeeRepository.findById(id);
-        employee.setEmployee_name(employee_name);
-        employee.setEmail(email);
-        employee.setPhone_number(phone_number);
-        employeeRepository.update(employee);
-        return "redirect:/Employee";
+    public String modifyEmployee(@PathVariable int id, @RequestParam String employee_name,
+                                 @RequestParam String email, @RequestParam String phone_number,
+                                 Model model, RedirectAttributes redirectAttributes) {
+        if (employeeRepository.findByEmail(email) == null) {
+            Employee employee = employeeRepository.findById(id);
+            employee.setEmployee_name(employee_name);
+            employee.setEmail(email);
+            employee.setPhone_number(phone_number);
+            employeeRepository.update(employee);
+            redirectAttributes.addFlashAttribute("message",
+                    "変更が成功しました");
+            return "redirect:/Employee";
+        } else {
+            String message = "エラー　この従業員がいます";
+            Employee employee = employeeRepository.findById(id);
+            model.addAttribute("employee", employee);
+            model.addAttribute("message", message);
+            return "employee_modify";
+        }
     }
 
     @GetMapping("/modify/{id}")
-    public String modifyEmployeeForm(@PathVariable int id, Model model){
+    public String modifyEmployeeForm(@PathVariable int id, Model model, String message){
         Employee employee = employeeRepository.findById(id);
         model.addAttribute("employee", employee);
+        model.addAttribute("message", message);
         return "employee_modify";
 
     }
-//    @DeleteMapping("/delete/{id}") // return a message or something here
-//    public int deleteEmployee(@PathVariable int id){
-//        return employeeRepository.deleteById(id);
-//        return "redirect:/Employee";
-//    }
     @GetMapping("/delete/{id}") // return a message or something here
-    public String deleteEmployee(@PathVariable int id){
+    public String deleteEmployee(@PathVariable int id, RedirectAttributes redirectAttributes){
         employeeRepository.deleteById(id);
+        redirectAttributes.addFlashAttribute("message", "削除に成功しました");
         return "redirect:/Employee";
     }
 }
