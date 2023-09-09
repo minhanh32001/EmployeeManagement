@@ -15,10 +15,6 @@ import java.io.FileNotFoundException;
 @Controller
 public class AccountController {
     @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    AccountRepository accountRepository;
-    @Autowired
     LoginService loginService;
     @GetMapping("/login")
     public String login() {
@@ -34,27 +30,4 @@ public class AccountController {
             return "redirect:login";
         }
     }
-    @GetMapping("/register")
-    public String newEmployeeForm(){
-        return "register";
-    }
-    @PostMapping("/register")
-    public String newEmployee(@RequestParam String username, @RequestParam String password, Model model, RedirectAttributes redirectAttributes){
-        Account checkExist = accountRepository.findByName(username);
-        if (checkExist== null){
-            Account account = new Account();
-            account.setUsername(username);
-            account.setPassword(passwordEncoder.encode(password));
-            account.setRole("user");
-            accountRepository.insert(account);
-            redirectAttributes.addFlashAttribute("message", "アカウント設定が成功しました、ロギングしてください。");
-            return "redirect:login";
-        }
-        else {
-            model.addAttribute("message", "アカウントが存在します！");
-            return "register";
-        }
-
-    }
-
 }

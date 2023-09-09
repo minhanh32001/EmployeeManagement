@@ -2,12 +2,13 @@
 <html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
-    <link th:href="@{/css/login.css}" rel="stylesheet" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/base.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログインページ</title>
 </head>
-<body>
+<body class="tsuika">
 <p class="header">ログインID及びパスワードを入力して下さい</p>
 <p style="color:red" th:utext="${message}"></p>
 <div class="loginform">

@@ -1,11 +1,83 @@
-table {
+
+body {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #F2F2F2;
+  color: #063A69;
+  font-weight: bold;
+  margin-top: 30px;
+}
+/*Search page*/
+input.search {
+  width: 30%;
+  height: auto;
+}
+
+table.search {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+
+  & tr:nth-child(odd) {
+    background-color: #E3E9FD;
+  }
+
+  & td, & th {
+    border: 1.5px solid rgba(29, 29, 29, 0.75);
+    text-align: center;
+    padding: 8px;
+  }
+
+  & th {
+    background-color: #D6DCE5;
+  }
+}
+td {
+  text-align: left;
+  font-weight: normal;
+}
+button {
+  cursor: pointer;
+  background-color: #9DC3E6;
+  border: 1px solid black;
+  padding: 0 15px;
+  margin-left: 30px;
+  border-radius: 5px;
+  color: #063A69;
+}
+button>a{
+    text-decoration: none;
+}
+div.pagination {
+  text-align: right;
+  font-weight: normal;
+}
+span.asterisk{
+  color: red;
+}
+/*Create page*/
+body.tsuika {
+  font-size: 20px;
+  margin-left: 30%;
+
+  & button {
+  margin-left: 100px;
+  padding: 4px 12px;
+}
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+table.tsuika {
+  padding-top: 50px;
+  font-size: 20px;
+  & td {
+    padding-top: 20px;
+    padding-left: 10px;
+  }
+  & input{
+    height: 20px;
+    width: 320px;
+    padding-right:50px ;
+    border-radius: 3px;
+  }
+
 }

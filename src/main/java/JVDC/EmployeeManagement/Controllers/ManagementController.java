@@ -51,7 +51,7 @@ public class ManagementController {
     public String searchEmployee(@RequestParam String employee_name, Model model){
         List<Employee> employees = employeeRepository.search(employee_name);
         model.addAttribute("employees", employees);
-        return "employee_search";
+        return "employee";
     }
     @GetMapping("/{id}") // get employee by id
     public String showEmployee(@PathVariable int id, Model model){

@@ -14,10 +14,6 @@ public class LoginService {
         Scanner readLoginInfo = new Scanner(loginInfo);
         String[] data = {readLoginInfo.nextLine(), readLoginInfo.nextLine()};
         readLoginInfo.close();
-        if (username.matches(data[0]) && password.matches(data[1])) {
-            return true;
-        } else
-            System.out.println(data[0] + data[1]);
-        return false;
+        return (username.matches(data[0]) && password.matches(data[1]));
     }
 }
