@@ -10,10 +10,10 @@
 <body class="tsuika">
 <p>会員を登録します。</p>
     <button class="logout" style="margin-left:60% "><a href="/login">ログアウト</a></button>
-    <form action="/Employee/create" method="POST">
+    <form action="/Employee/create_confirm" method="POST">
         <table class="tsuika">
             <tr>
-                <td>名前<span class="asterisk">*</span></td>
+                <td>名前<span class="asterisk">*</span> </td>
                 <td><label>
                     <input type="text" name="employee_name" required/>
                 </label></td>
@@ -30,6 +30,8 @@
                     <input type="tel" name="phone_number" required/>
                 </label></td>
             </tr>
+        </table>
+        <table style="margin:2em 0 0 8em">
             <tr>
                 <td><button type="reset" onclick="history.back()">戻す</button></td>
                 <td><button type="submit">確認</button></td>

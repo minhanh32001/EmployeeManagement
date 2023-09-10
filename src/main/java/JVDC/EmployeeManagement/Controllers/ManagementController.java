@@ -25,7 +25,6 @@ public class ManagementController {
     EmployeeRepository employeeRepository;
     @Autowired
     ManagementService managementService;
-
     @GetMapping("")
     public String showEmployeeListPage(Model model,
                                        @RequestParam("page") Optional<Integer> page,
@@ -35,7 +34,7 @@ public class ManagementController {
 
         Page<Employee> employeePage = managementService.findAll(PageRequest.of(currentPage - 1, pageSize));
 
-        model.addAttribute("employees",employeePage );
+        model.addAttribute("employees", employeePage);
 
         int totalPages = employeePage.getTotalPages();
         if (totalPages > 0) {
@@ -48,72 +47,81 @@ public class ManagementController {
     }
 
     @GetMapping("/search")
-    public String searchEmployee(@RequestParam String employee_name, Model model){
+    public String searchEmployee(@RequestParam String employee_name, Model model) {
         List<Employee> employees = employeeRepository.search(employee_name);
         model.addAttribute("employees", employees);
         return "employee";
     }
-    @GetMapping("/{id}") // get employee by id
-    public String showEmployee(@PathVariable int id, Model model){
+
+    @GetMapping("/{id}")
+    public String showEmployee(@PathVariable int id, Model model) {
         Employee employee = employeeRepository.findById(id);
         model.addAttribute("employee", employee);
         return "employee_detail";
-    };
+    }
 
     @GetMapping("/create")
-    public String newEmployeeForm(){
+    public String newEmployeeForm() {
         return "employee_add";
     }
+    @PostMapping("/create_confirm")
+    public String modifyConfirm(@RequestParam String employee_name,
+                                @RequestParam String email,
+                                @RequestParam String phone_number,
+                                RedirectAttributes redirectAttributes, Model model) {
+        Employee employee = new Employee(employee_name, email, phone_number);
+        model.addAttribute("employee", employee);
+        return "create_confirm";
+    }
     @PostMapping("/create")
-    public String newEmployee(@RequestParam String employee_name, @RequestParam String email,
-                              @RequestParam String phone_number,
-                              Model model, RedirectAttributes redirectAttributes){
-        if (employeeRepository.findByEmail(email)==null){
-            Employee employee = new Employee(employee_name, email, phone_number);
-            employeeRepository.insert(employee);
-            redirectAttributes.addFlashAttribute("message", "従業員の追加に成功しました");
-            return "redirect:/Employee";
-        }
-        else {
-            model.addAttribute("message", "エラー　この従業員がいます");
-            return "employee_add";
-        }
+    public String createEmployee(@RequestParam String employee_name,
+                                 @RequestParam String email, @RequestParam String phone_number,
+                                 Model model) {
+        Employee employee = new Employee(employee_name, email, phone_number);
+        employeeRepository.insert(employee);
+        String message = "追加が完了しました。";
+        model.addAttribute("message", message);
+        return "complete";
     }
 
     @PostMapping("/modify/{id}")
     public String modifyEmployee(@PathVariable int id, @RequestParam String employee_name,
                                  @RequestParam String email, @RequestParam String phone_number,
-                                 Model model, RedirectAttributes redirectAttributes) {
-        if (employeeRepository.findByEmail(email) == null) {
-            Employee employee = employeeRepository.findById(id);
-            employee.setEmployee_name(employee_name);
-            employee.setEmail(email);
-            employee.setPhone_number(phone_number);
-            employeeRepository.update(employee);
-            redirectAttributes.addFlashAttribute("message",
-                    "変更が成功しました");
-            return "redirect:/Employee";
-        } else {
-            String message = "エラー　この従業員がいます";
-            Employee employee = employeeRepository.findById(id);
-            model.addAttribute("employee", employee);
-            model.addAttribute("message", message);
-            return "employee_modify";
-        }
-    }
-
-    @GetMapping("/modify/{id}")
-    public String modifyEmployeeForm(@PathVariable int id, Model model, String message){
+                                 Model model) {
         Employee employee = employeeRepository.findById(id);
-        model.addAttribute("employee", employee);
+        employee.setEmployee_name(employee_name);
+        employee.setPhone_number(phone_number);
+        employee.setEmail(email);
+        employeeRepository.update(employee);
+        String message = "更新が完了しました。";
         model.addAttribute("message", message);
-        return "employee_modify";
+        return "complete";
+        }
+
+    @PostMapping("/modify_confirm/{id}")
+    public String modifyConfirm(@RequestParam String employee_name,
+                          @RequestParam String email,
+                          @RequestParam String phone_number,
+                          @PathVariable int id, RedirectAttributes redirectAttributes, Model model){
+        Employee employee = employeeRepository.findById(id);
+        employee.setEmployee_name(employee_name);
+        employee.setEmail(email);
+        employee.setPhone_number(phone_number);
+        model.addAttribute("employee", employee);
+        return "modify_confirm";
+}
+    @GetMapping("/delete_confirm/{id}")
+    public String deleteConfirm( @PathVariable int id, RedirectAttributes redirectAttributes, Model model){
+        Employee employee = employeeRepository.findById(id);
+        model.addAttribute("employee",employee);
+        return "delete_confirm";
 
     }
-    @GetMapping("/delete/{id}") // return a message or something here
-    public String deleteEmployee(@PathVariable int id, RedirectAttributes redirectAttributes){
+    @PostMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable int id, Model model){
         employeeRepository.deleteById(id);
-        redirectAttributes.addFlashAttribute("message", "削除に成功しました");
-        return "redirect:/Employee";
+        model.addAttribute("message", "削除が完了しました。");
+        return "complete";
     }
+
 }

@@ -3,12 +3,13 @@
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
     <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/base.css">
     <meta charset="UTF-8">
     <title>Employee Information</title>
 </head>
 <body>
     <span>新規会員追加<a href="/Employee/create"><button>追加</button></a></span>
-    <button style="margin-left:80% "><a href="/login">ログアウト</a></button>
+    <a href="/login"><button style="margin-left:80% ">ログアウト</button></a>
     <form th:action="@{Employee/search}" method="get">
         <p>名前で会員を検索します。</p>
         <label>
@@ -37,9 +38,7 @@
     <div th:if="${employees.totalPages > 0}"  class="pagination">
         <th:block th:each="pageNumber : ${pageNumbers}">
             <a th:href="@{/Employee(size=${employees.size}, page=${pageNumber})}"
-               th:text="${pageNumber}"
-               th:class="${pageNumber == employees.number + 1} ? 'active'"></a>
-
+               th:text="${pageNumber}"></a>
         </th:block>
         <a href="#">&raquo;</a>
     </div>

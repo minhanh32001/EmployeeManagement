@@ -8,20 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログインページ</title>
 </head>
-<body class="tsuika">
-<p class="header">ログインID及びパスワードを入力して下さい</p>
-<p style="color:red" th:utext="${message}"></p>
-<div class="loginform">
+<body class="login">
+<p>ログインID及びパスワードを入力して下さい</p>
+<p class="message" th:utext="${message}"></p>
+<div>
     <form action="/authen" method="post">
-        <label for="username">ログインID:</label>
-        <input type="text" id="username" name="username" required minlength="10"><br>
-        <label for="password">パスワード:</label>
-        <input type="password" id="password" name="password" required minlength="10">
-        <br>
+        <table>
+            <tr>
+                <td>ログインID:</td>
+                <td><label>
+                    <input type="text" id="username" name="username" required minlength="10"><br>
+                </label></td>
+            </tr>
+            <tr>
+                <td>パスワード:</td>
+                <td><label>
+                    <input type="password" id="password" name="password" required minlength="10">
+                </label></td>
+            </tr>
+        </table>
         <button type="submit">ログイン</button>
     </form>
-    <br>
-    <p>アカウントがありません <a style="" href="/register">登録</a></p>
 </div>
 </body>
 </html>

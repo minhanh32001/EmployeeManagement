@@ -1,4 +1,4 @@
-
+/*Common*/
 body {
   width: 80%;
   margin: 0 auto;
@@ -6,6 +6,31 @@ body {
   color: #063A69;
   font-weight: bold;
   margin-top: 30px;
+}
+button {
+  cursor: pointer;
+  background-color: #9DC3E6;
+  border: 1px solid black;
+  padding: 0 15px;
+  margin-left: 30px;
+  border-radius: 5px;
+  color: #063A69;
+}
+button>a{
+  text-decoration: none;
+}
+*.message{
+  color: red;
+  font-size: 80%;
+}
+span.asterisk{
+  color: red;
+}
+input {
+  border: solid black 1px;
+  border-collapse: collapse;
+  border-radius: 3px;
+  width: max-content;
 }
 /*Search page*/
 input.search {
@@ -27,46 +52,32 @@ table.search {
     text-align: center;
     padding: 8px;
   }
-
   & th {
     background-color: #D6DCE5;
   }
+  & td {
+    text-align: left;
+    font-weight: normal;
+  }
 }
-td {
-  text-align: left;
-  font-weight: normal;
-}
-button {
-  cursor: pointer;
-  background-color: #9DC3E6;
-  border: 1px solid black;
-  padding: 0 15px;
-  margin-left: 30px;
-  border-radius: 5px;
-  color: #063A69;
-}
-button>a{
-    text-decoration: none;
-}
+
+/*Pagination*/
 div.pagination {
   text-align: right;
   font-weight: normal;
 }
-span.asterisk{
-  color: red;
-}
 /*Create page*/
-body.tsuika {
+body.tsuika{
   font-size: 20px;
-  margin-left: 30%;
-
+  margin-left: 25%;
   & button {
-  margin-left: 100px;
-  padding: 4px 12px;
+  margin-left: 50px;
+  padding: 4px 20px;
 }
 }
 
 table.tsuika {
+  margin-left: 10%;
   padding-top: 50px;
   font-size: 20px;
   & td {
@@ -75,9 +86,70 @@ table.tsuika {
   }
   & input{
     height: 20px;
-    width: 320px;
+    width: 200px;
     padding-right:50px ;
-    border-radius: 3px;
   }
+}
+/*Login*/
+body.login{
+  font-size: 15px;
+  margin-left: 15%;}
+ & div {
+    margin-left: 20%;
+    & table{
+      margin-bottom: 30px;
+      & td {
+        padding: 10px 10px;
+      }
+      & input {
+        width: auto;
+        height: 20px;
+        padding-right:50px;
+      }
+    }
+    & button{
+      padding: 5px 30px;
+      margin-left: 10em;
+    }
+}
+body.koushin {
+  margin-left: 20%;
+  & button{
+    margin-left: 1em;
+  }
+}
+body.confirm {
+  margin-left: 16%;
+  & table.confirm {
+    border-collapse: collapse;
+    & th, & td {
+      border: solid black 1px;
+      font-weight: normal;
+      text-decoration: none;
+    }
+    & th {
+      width: 8em;
+      text-align: left;
+    }
+    & td {
+      width: 16em;
+    }
 
+  }
+  & button{
+    margin-left: 1em;
+  }
+}
+body.complete {
+  margin-left: 25%;
+}
+div.message{
+  margin-left: 15%;
+  & p {
+    font-size: 18px;
+    margin: 100px 0px 100px 5%;
+  }
+  & button {
+    margin-left: 10%;
+  }
 }
