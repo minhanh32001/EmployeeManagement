@@ -4,15 +4,17 @@
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
     <link th:href="@{/css/base.css}" rel="stylesheet" />
     <link rel="stylesheet" href="../static/css/base.css">
+    <script src="/js/error.js"></script>
+    <script type="text/javascript" th:src="@{/js/error.js.js}"></script>
     <meta charset="UTF-8">
     <title>社員情報</title>
 </head>
 <body class="koushin">
     <p>会員を編集します。</p>
     <a href="/login"><button style="margin-left:80% ">ログアウト</button></a>
-    <p class="message" th:utext="${message}"></p>
+    <p class="message" id="message"></p>
     <div>
-        <form th:action="@{/Employee/modify_confirm/{id}(id=${employee.id})}" method="POST">
+        <form name="employee_detail_data" onsubmit="return validateDetailForm()" th:action="@{/Employee/modify_confirm/{id}(id=${employee.id})}" method="POST">
             <table>
                 <tr>
                     <td>ID</td>
@@ -20,20 +22,20 @@
                 </tr>
                 <tr>
                     <td>名前<span class="asterisk">*</span></td>
-                    <td><input type="text" th:field="*{employee.employee_name}" required/></td>
+                    <td><input type="text" name="employee_name" th:field="*{employee.employee_name}" required/></td>
                 </tr>
                 <tr>
                     <td>メール<span class="asterisk">*</span></td>
-                    <td><input type="email" th:field="*{employee.email}" required/></td>
+                    <td><input type="email" name="email" th:field="*{employee.email}" required/></td>
                 </tr>
                 <tr>
                     <td>電話番号<span class="asterisk">*</span></td>
-                    <td><input type="tel" th:field="*{employee.phone_number}" required/></td>
+                    <td><input type="tel" name="phone_number" th:field="*{employee.phone_number}" required/></td>
                 </tr>
             </table>
             <table>
                 <tr>
-                    <td><button onclick="history.back()">戻す</button></td>
+                    <td><button type="button" onclick=history.back()>戻す</button></td>
                     <td><a th:href="@{/Employee/delete_confirm/{id}(id=${employee.id})}"><button type="button">削除</button></a></td>
                     <td><button type="submit">更新</button></td>
                 </tr>

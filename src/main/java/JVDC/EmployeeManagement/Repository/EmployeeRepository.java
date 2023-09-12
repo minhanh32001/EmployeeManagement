@@ -7,11 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface EmployeeRepository {
-    @Select("Select Row_number() over(order by id) serial, id, employee_name, email, phone_number from employees;")
+    @Select("Select * from employees;")
     public List<Employee> findAll();
 
-    @Select(" Select Row_number() over(order by id) serial, id, employee_name, email, phone_number from employees WHERE employee_name like CONCAT('%', #{employee_name}, '%') OR email like CONCAT('%', #{employee_name}, '%')")
-    public List<Employee> search(String employee_name);
+    @Select(" Select * from employees WHERE employee_name like CONCAT('%', #{employee_name}, '%') OR email like CONCAT('%', #{employee_name}, '%')")
+    public List<Employee> find(String employee_name);
 
     @Select("SELECT * FROM employees WHERE id = #{id}")
     public Employee findById(int id);

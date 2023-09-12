@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 @Service
 public class LoginService {
+    // read file
     public Boolean loginCheck(String username, String password) throws FileNotFoundException {
         File loginInfo = new File("src/main/resources/static/login_info.txt");
         Scanner readLoginInfo = new Scanner(loginInfo);

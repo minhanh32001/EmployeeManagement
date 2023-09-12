@@ -4,13 +4,15 @@
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
     <link th:href="@{/css/base.css}" rel="stylesheet" />
     <link rel="stylesheet" href="../static/css/base.css">
+    <script src="/js/dialog.js"></script>
+    <script type="text/javascript" th:src="@{/js/dialog.js}"></script>
     <meta charset="UTF-8">
     <title>登録</title>
 </head>
 <body class="tsuika">
 <p>会員を登録します。</p>
     <button class="logout" style="margin-left:60% "><a href="/login">ログアウト</a></button>
-    <form action="/Employee/create_confirm" method="POST">
+    <form name="employee_data" onsubmit="return validateForm()" action="/Employee/create_confirm" method="POST">
         <table class="tsuika">
             <tr>
                 <td>名前<span class="asterisk">*</span> </td>
@@ -21,7 +23,7 @@
             <tr>
                 <td>メール<span class="asterisk">*</span></td>
                 <td><label>
-                    <input type="email" name="email" required/>
+                    <input type="text" name="email" required/>
                 </label></td>
             </tr>
             <tr>
@@ -33,7 +35,7 @@
         </table>
         <table style="margin:2em 0 0 8em">
             <tr>
-                <td><button type="reset" onclick="history.back()">戻す</button></td>
+                <td><button type="button" onclick="history.back()">戻す</button></td>
                 <td><button type="submit">確認</button></td>
             </tr>
         </table>
