@@ -33,11 +33,12 @@ input {
 }
 /*Search page*/
 input.search {
+  height: 40px;
   width: 30%;
-  height: auto;
 }
 
 table.search {
+  margin-top: 3em;
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;

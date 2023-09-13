@@ -22,10 +22,10 @@ public class AccountController {
     }
     @PostMapping("/authen")
     public String authen(@RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) throws FileNotFoundException {
-        if (loginService.loginCheck(username, password)) {
-            return "redirect:Employee";
+        if (loginService.loginCheck(username, password)) { // use loginCheck to check login information, if username and password match, login successful.
+            return "redirect:Employee";// and redirect to home page
         }
-        else {
+        else { //if not match, login false, display a fail message on login page.
             redirectAttributes.addFlashAttribute("message", "ユーザー名またはパスワードが違います。");
             return "redirect:login";
         }
