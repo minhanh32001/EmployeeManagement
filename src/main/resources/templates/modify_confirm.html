@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/base.css">
+    <meta charset="UTF-8">
+    <title>社員情報</title>
+</head>
+<body class="confirm">
+    <span>会員を更新します。<a href="/login"><button style="margin-left:80% ">ログアウト</button></a></span>
+    <p>この内容でよろしければ、「OK」ボタンをクリックしてください。</p>
+    <br>
+    <div>
+        <form th:action="@{/Employee/modify/{id}(id=${employee.id})}" method="POST">
+            <table class="confirm">
+                <tr>
+                    <th>ID</th>
+                    <td th:text="${employee.id}"></td>
+                    <input hidden name="id" type="text" th:field="*{employee.id}"></input>
+
+                </tr>
+                <tr>
+                    <th>名前</th>
+                    <td th:text="${employee.employee_name}"></td>
+                    <input hidden name="employee_name" type="text" th:field="*{employee.employee_name}"></input>
+                </tr>
+                <tr>
+                    <th>メール</th>
+                    <td th:text="${employee.email}"></td>
+                    <input hidden name="email" type="text" th:field="*{employee.email}"></input>
+                </tr>
+                <tr>
+                    <th>電話番号</th>
+                    <td th:text="${employee.phone_number}"></td>
+                    <input hidden name="phone_number" type="text" th:field="*{employee.phone_number}"></input>
+                </tr>
+            </table>
+            <table style="margin-left: 3em">
+                <tr>
+                    <td><button type="button" onclick=history.back()>戻す</button></td>
+                    <td><button type="submit">OK</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

@@ -22,8 +22,8 @@ public class ManagementService {
     }
 
     List<Employee> employees = new ArrayList<>();
-    public Page<Employee> findAll(Pageable pageable) {
-        employees = employeeRepository.findAll();
+    public Page<Employee> displayEmployees(String employee_name, Pageable pageable) {
+        employees = employeeRepository.find(employee_name);
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;

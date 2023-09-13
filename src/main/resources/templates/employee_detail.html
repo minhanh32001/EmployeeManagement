@@ -2,36 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
-    <link th:href="@{/css/employee_detail.css}" rel="stylesheet" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/base.css">
+    <script src="/js/error.js"></script>
+    <script type="text/javascript" th:src="@{/js/error.js.js}"></script>
     <meta charset="UTF-8">
     <title>社員情報</title>
 </head>
-<body>
-<h1>社員情報</h1>
-<div class="center-table">
-    <table>
-        <tr>
-            <td><strong>ID:</strong></td>
-            <td><span th:text="${employee.id}"></span></td>
-        </tr>
-        <tr>
-            <td><strong>名前:</strong></td>
-            <td><span th:text="${employee.employee_name}"></span></td>
-        </tr>
-        <tr>
-            <td><strong>メール:</strong></td>
-            <td><span th:text="${employee.email}"></span></td>
-        </tr>
-        <tr>
-            <td><strong>電話番号:</strong></td>
-            <td><span th:text="${employee.phone_number}"></span></td>
-        </tr>
-    </table>
-</div>
-<div>
-    <button><a href="/Employee">戻す</a></button>
-    <button class="delete"><a th:href="@{/Employee/delete/{id}(id=${employee.id})}">削除</a></button>
-    <button style="background-color: yellow"><a th:href="@{/Employee/modify/{id}(id=${employee.id})}">更新</a></button>
-</div>
+<body class="koushin">
+    <p>会員を編集します。</p>
+    <a href="/login"><button style="margin-left:80% ">ログアウト</button></a>
+    <p class="message" id="message"></p>
+    <div>
+        <form name="employee_detail_data" onsubmit="return validateDetailForm()" th:action="@{/Employee/modify_confirm/{id}(id=${employee.id})}" method="POST">
+            <table>
+                <tr>
+                    <td>ID</td>
+                    <td><input style="background-color: inherit" type="text" th:field="*{employee.id}" readonly/></td>
+                </tr>
+                <tr>
+                    <td>名前<span class="asterisk">*</span></td>
+                    <td><input type="text" name="employee_name" th:field="*{employee.employee_name}" required/></td>
+                </tr>
+                <tr>
+                    <td>メール<span class="asterisk">*</span></td>
+                    <td><input type="email" name="email" th:field="*{employee.email}" required/></td>
+                </tr>
+                <tr>
+                    <td>電話番号<span class="asterisk">*</span></td>
+                    <td><input type="tel" name="phone_number" th:field="*{employee.phone_number}" required/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td><button type="button" onclick=history.back()>戻す</button></td>
+                    <td><a th:href="@{/Employee/delete_confirm/{id}(id=${employee.id})}"><button type="button">削除</button></a></td>
+                    <td><button type="submit">更新</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
