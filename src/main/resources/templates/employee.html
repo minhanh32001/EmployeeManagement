@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
     <link rel="icon" type="image/x-icon" th:href="@{/img/dxc.ico}" />
     <link th:href="@{/css/base.css}" rel="stylesheet" />
@@ -11,13 +11,10 @@
     <span>新規会員追加<a href="/Employee/create"><button>追加</button></a></span>
     <a href="/login"><button style="margin-left:80% ">ログアウト</button></a>
     <form th:action="@{Employee}">
-        <input type="text" name="employee_name" id="employee_name" size="50" th:value="${keyword}"/>
+        <input style="height: 1.5em" type="text" name="employee_name" id="employee_name" size="50" th:value="${keyword}"/>
         <button type="submit">検索</button>
-
     </form>
-    <br>
     <p style="color:red" th:utext="${message}"></p>
-    <br>
     <br>
     <table class="search">
         <tr>
